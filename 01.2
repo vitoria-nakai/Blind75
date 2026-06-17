@@ -1,0 +1,27 @@
+"""
+Par com a Menor Diferença Absoluta
+Dado um array de inteiros nums, encontre o par de elementos cuja diferença absoluta seja a menor possível.
+Se houver mais de um par com a mesma menor diferença, retorne qualquer um deles (ou todos, se quiser se desafiar).
+Se nums = [4, 12, 1, 8, 3], os números mais próximos são 1 e 3 (diferença de 2).Olhar elemento por elemento de forma
+bruta vai exigir dois loops encadeados ($O(n^2)$). Mas, se você ordenar o array primeiro, os números mais próximos
+ficarão vizinhos. Isso reduz o problema a uma única passada pelo array.
+"""
+
+def minimal_difference(inteiros):
+    menor_diferenca = abs(inteiros[0] - inteiros[1])
+    melhor_par = [inteiros[0], inteiros[1]]
+    for i in range(len(inteiros) - 1):
+        if abs(inteiros[i] - inteiros[i + 1]) < menor_diferenca:
+            menor_diferenca = abs(inteiros[i] - inteiros[i + 1])
+            melhor_par = [inteiros[i], inteiros[i + 1]]
+    return melhor_par
+
+inteiros = [4, 12, 1, 8, 3]
+
+inteiros.sort()
+
+print(inteiros)
+
+minimal = minimal_difference(inteiros)
+
+print(minimal)
