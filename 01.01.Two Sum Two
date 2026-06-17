@@ -1,0 +1,27 @@
+"""
+TWO SUM II
+Dado um array de inteiros nums já ordenado em ordem crescente e um valor target, encontre dois números no array que
+somem até o target. Retorne os índices desses dois números (baseados em 1, ou seja, o primeiro elemento é 1, o segundo
+é 2, etc.).Você não deve usar espaço extra significativo (tente resolver com complexidade de espaço $O(1)$).
+Como o array está ordenado, você não precisa de uma tabela Hash. Pode usar a técnica de Dois Ponteiros (um no início
+e um no fim do array), aproximando-os conforme a soma seja maior ou menor que o alvo.
+"""
+
+def two_sum_two(inteiros, alvo):
+    esquerda = 0
+    direita = len(inteiros) - 1
+    while esquerda < direita:
+        if inteiros[esquerda] + inteiros[direita] == alvo:
+            return [esquerda + 1, direita + 1]
+        elif inteiros[esquerda] + inteiros[direita] > alvo:
+            direita = direita - 1
+        else:
+            esquerda = esquerda + 1
+    print("A soma dos inteiros não chegam no alvo.")
+    
+inteiros = [1, 2, 3, 4, 5]
+alvo = 7
+
+índices = two_sum_two(inteiros, alvo)
+
+print(índices)
