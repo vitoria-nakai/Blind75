@@ -1,0 +1,33 @@
+"""
+Subarray com Soma Igual a K
+Esta é uma evolução natural do Two Sum. Em vez de procurar apenas dois elementos isolados,
+você precisa encontrar uma sequência contínua (um subarray) que atinja o valor esperado.
+Dado um array de inteiros nums e um inteiro k, retorne o número total de subarrays contínuos
+cuja soma seja exatamente igual a k. Se nums = [1, 1, 1] e k = 2, a resposta é 2 (os subarrays
+são os dois primeiros elementos [1, 1] e os dois últimos [1, 1]).Essa questão usa um conceito
+chamado Soma Prefixo combinado com uma Tabela Hash (Dicionário). Se a soma acumulada até o ponto
+atual é $S_{atual}$ e você está procurando por uma soma $k$, você quer saber quantas vezes a soma
+$S_{atual} - k$ já apareceu antes.
+"""
+
+def subarray_sum(intergers, target):
+    soma_atual = 0
+    total_subarrays = 0
+    dic = {0:1}
+    
+    for i in range(len(intergers)):
+        soma_atual = soma_atual + intergers[i]
+        dif = soma_atual - target
+        if dif in dic:
+           total_subarrays = total_subarrays + dic[dif]
+        if soma_atual in dic:
+           dic[soma_atual] = dic[soma_atual] + 1
+        else:
+           dic[soma_atual] = 1
+    return total_subarrays
+
+nums = [1, 1, 1, 1, 2, 2, 3, 3]
+alvo = 4
+
+resultado = subarray_sum(nums, alvo)
+print(resultado) 
