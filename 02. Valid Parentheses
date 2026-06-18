@@ -1,0 +1,40 @@
+"""
+VALID PARENTHESES
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+1. Open brackets must be closed by the same type of brackets.
+2. Open brackets must be closed in the correct order.
+3. Every close bracket has a corresponding open bracket of the same type.
+"""
+
+s1 = "(amor)"
+s2 = "((am)"
+s3 = ")"
+
+def valid_parentheses(string):
+    stack = []
+    for char in string:
+        if char in ["(", "[", "{"]:
+            stack.append(char)
+        elif char in [")", "]", "}"]:
+            if char == ")" and stack and stack[-1] == "(":
+                stack.pop()
+            elif char == "]" and stack and stack[-1] == "[":
+                stack.pop()     
+            elif char == "}" and stack and stack[-1] == "{":
+                stack.pop()
+            else:
+                print("A string é inválida.")
+                return
+    if not stack:
+        print("A string é válida.")
+        return 
+    else:
+        print("A string é inválida.")
+        return
+
+valid_parentheses(s1)
+valid_parentheses(s2)
+valid_parentheses(s3)
